@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanidhya Mitra - Data Analyst</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom right, #4169e1, #87ceeb);
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Add padding to prevent content from touching edges */
+    max-width: 100%; /* Allow content to spread to the full width */
+    overflow-x: hidden; /* Hide horizontal overflow */
+    box-sizing: border-box; /* Include padding and border in the total width/height */
+}
+
+        .content {
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            opacity: 0;
+            transform: translateY(-20%);
+            animation: fadeInAnimation 1.5s forwards, slideInAnimation 1s forwards;
+            max-width: 1000px; /* Limit the maximum width */
+            width: 100%; /* Make content responsive */
+        }
+
+        @keyframes fadeInAnimation {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideInAnimation {
+            0% { transform: translateY(-20%); }
+            100% { transform: translateY(0%); }
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .content {
+                padding: 10px;
+            }
+            .skill, .project-container {
+                width: 100%; /* Full width on smaller screens */
+            }
+            .project-link {
+                font-size: 16px; /* Reduce font size */
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            .skill, .project-container {
+                width: 100%; /* Full width on smallest screens */
+            }
+            .project-link {
+                font-size: 14px; /* Further reduce font size */
+            }
+        }
+
+        .reveal {
+            opacity: 1;
+            transform: none;
+            margin-top: 0;
+        }
+
+        .dashboard-section {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .project-container {
+            text-align: center;
+            margin: 20px 0; /* Add margin to separate projects */
+        }
+
+        .project {
+            margin: 0 auto;
+            display: inline-block;
+        }
+
+        .tab {
+            display: none;
+        }
+
+        .tab.active-tab {
+            display: block;
+        }
+
+        .tab-button {
+            background-color: #FFD700;
+            color: #1b1e20;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+            display: inline-block;
+            text-decoration: none;
+            outline: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .tab-button:hover {
+            background-color: #800020;
+            transform: scale(1.05);
+            color: #fff;
+        }
+
+        .tab-button:active {
+            transform: translateY(1px);
+            background-color: #FFD700;
+        }
+
+        .quote-section {
+            padding-bottom: 50px;
+        }
+
+        .quote-container {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .quote-section blockquote {
+            position: relative;
+            border-left: 5px solid #FFD700;
+            padding-left: 10px;
+            font-style: italic;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .quote-section blockquote footer {
+            position: absolute;
+            bottom: -40px;
+            left: 0;
+            color: #FFD700;
+        }
+
+        .quote-section blockquote::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -5px;
+            width: 5px;
+            background-color: #FFD700;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .section p {
+            color: #ddd;
+        }
+
+        .section hr {
+            border-color: #FFD700;
+        }
+
+        .section:last-child {
+            margin-bottom: 0;
+        }
+
+        .connect-icons {
+            text-align: center;
+            margin: 20px 0; /* Add margin for spacing */
+        }
+
+        .connect-icons img {
+            margin-right: 30px;
+            display: inline-block;
+            transition: transform 0.3s ease;
+            height: 50px;
+        }
+
+        .connect-icons img:hover {
+            transform: scale(1.5);
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+        }
+
+        .skill {
+            width: 44%;
+            padding: 5px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            transition: transform 0.5s ease, background-color 0.3s ease;
+        }
+
+        .skill:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .skill img {
+            max-width: 50px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .skill-description {
+            color: #333;
+            flex-grow: 1;
+        }
+
+        blockquote {
+            position: relative;
+            border-left: 5px solid #FFD700;
+            padding-left: 10px;
+            font-style: italic;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 30px 0;
+            line-height: 1.5;
+        }
+
+        blockquote footer {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            color: #FFD700;
+        }
+
+        blockquote::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -5px;
+            height: 100%;
+            width: 5px;
+            background-color: #FFD700;
+        }
+
+        footer {
+            text-align: right;
+            color: #FFD700;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer .badge img {
+            vertical-align: middle;
+        }
+
+        .project-link {
+            color: #800020;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            padding-bottom: 2px;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .project-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, #e0e0e0, #ffffff, #e0e0e0);
+            visibility: hidden;
+            transform: scaleX(0);
+            transition: transform 0.3s ease, visibility 0s linear 0.3s;
+        }
+
+        .project-link:hover::before {
+            visibility: visible;
+            transform: scaleX(1);
+            transition: transform 0.3s ease, visibility 0s linear;
+        }
+
+        .project-link:hover {
+            color: #C0C0C0;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="container">
+    <div class="content animate__animated animate__fadeIn animate__delay-1s">
+        <div class="section">
+            <h1>Welcome to my GitHub space—let me introduce myself!</h1>
+            <p>I'm <strong>Sanidhya Mitra</strong>, a <strong>Data Analyst</strong> with a deep passion for transforming complex datasets into actionable business insights. My analytical approach ensures that data isn't just numbers, but a roadmap to solving complex business challenges and sculpting the contours of enduring progress. I call this process as <b><i>Breathing Life Into Barren Data</i></b></p>
+            <img src="Banner.png" alt="Coding" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);">
+        </div>
+        <hr>
+
+        <div class="section">
+            <h2>Philosophy:</h2>
+            <p>Guided by the principle of Sherlock Holmes, <strong>"Never theorize before you have data"</strong>, I investigate complex datasets and delve into the depths of data to unearth insights. I believe in digging deep into data to uncover not just the 'what' but the 'why' and 'how', helping businesses navigate through the fog of uncertainty and into clear, strategic outcomes.</p>
+        </div>
+        
+        <div class="section">
+            <h2>Core Competencies 🛠️:</h2>
+            <div class="skills-container">
+                <div class="skill">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                    <span class="skill-description">Proficiency in scripting and database queries.</span>
+                </div>
+                <div class="skill">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Data Analytics">
+                    <span class="skill-description">Advanced data extraction and analysis.</span>
+                </div>
+                <div class="skill">
+                    <img src="https://www.svgrepo.com/show/354428/tableau-icon.svg" alt="Visualization">
+                    <span class="skill-description">Skilled in Power BI and Tableau for insightful visuals.</span>
+                </div>
+                <div class="skill">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg" alt="Statistical Analysis">
+                    <span class="skill-description">Strong foundation in statistical methodologies.</span>
+                </div>
+                <div class="skill">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="Business Intelligence">
+                    <span class="skill-description">Experience in transforming data into BI solutions.</span>
+                </div>
+                <div class="skill">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pycharm/pycharm-original.svg" alt="Machine Learning">
+                    <span class="skill-description">Applying predictive models to real-world scenarios.</span>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="section">
+            <h2>Examples of Work 👀:</h2>
+            
+            <div id="amazon" class="tab active-tab">
+                <div class="project-container">
+                <h3>Amazon Dashboard</h3>
+                <p class="dashboard-caption">&#9432; <i>An overview of Amazon's revenue, orders, delivery metrics and operations.</i></p>
+                <img src="Amazon_Dashboard.gif" alt="Amazon Dashboard">
+                <p><a href="https://github.com/sanidhya-mitra/Amazon-PowerBI-Dashboard-Project" class="project-link">Click Here To Explore the Project</a></p>
+            </div>
+            </div>
+            <div class="project-container">
+            <div id="london" class="tab">
+                <h3>London's Public Bike-Sharing Analytics</h3>
+                <p class="dashboard-caption">&#9432; <i>Analysis of London's bike rental patterns using interactive charts and dynamic tooltips.</i></p>
+                <img src="Pedal Pulse London Dashboard.gif" alt="London's Bike-Share Dashboard">
+                <p><a href="https://github.com/sanidhya-mitra/London_s-Bike-Share-Analysis" class="project-link">Click Here to Explore the Project</a></p>
+            </div>
+            </div>
+            <div class="project-container">
+            <div id="hr" class="tab">
+                <h3>HR Analytics Dashboard</h3>
+                <p class="dashboard-caption">&#9432; <i>Detailed analytics of employee metrics.</i></p>
+                <img src="HR Dashboard.gif" alt="HR Dashboard">
+                <p><a href="https://github.com/sanidhya-mitra/HR-Analytics-Project" class="project-link">Click Here to Explore the Project</a></p>
+            </div>
+            </div>
+            <div class="project-container">
+            <div id="prime" class="tab">
+                <h3>Amazon Prime Video Dashboard</h3>
+                <p class="dashboard-caption">&#9432; <i>Analytics for viewer trends and content strategy.</i></p>
+                <img src="Amazon Prime Dashboard.gif" alt="Amazon Prime Video Dashboard">
+                <p><a href="https://github.com/sanidhya-mitra/Amazon-Prime-Video-Dashboard-Project" class="project-link">Click Here to Explore the Project</a></p>
+            </div>
+            </div>
+        <div class="dashboard-section">
+            <div>
+                <button class="tab-button" onclick="openTab('amazon')">Amazon Dashboard</button>
+                <button class="tab-button" onclick="openTab('london')">London's Bike-Sharing Analytics</button>
+                <button class="tab-button" onclick="openTab('hr')">HR Analytics Dashboard</button>
+                <button class="tab-button" onclick="openTab('prime')">Amazon Prime Video Dashboard</button>
+            </div>
+        </div>
+        </div>
+
+        <div class="section quote-container">
+            <div class="quote-section">
+                <blockquote>
+                    <p>"Never theorize before you have data. Invariably, you end up twisting facts to suit theories, instead of theories to suit facts. The temptation to form premature theories upon insufficient data is the bane of our profession."</p>
+                    <footer>
+                        — Sherlock Holmes
+                    </footer>
+                </blockquote>
+            </div>
+        </div>
+        
+        
+
+        <div class="section">
+            <div class="connect-icons">
+                <strong>Let's stay connected!</strong> Follow me for professional updates and insights.<br><br>
+                <a href="https://github.com/sanidhya-mitra"><img src='https://cdn.worldvectorlogo.com/logos/github-icon-2.svg' alt='GitHub'></a>
+                <a href="https://www.linkedin.com/in/sanidhya-mitra/"><img src='https://cdn.worldvectorlogo.com/logos/linkedin-icon-2.svg' alt='LinkedIn'></a>
+                <a href="https://public.tableau.com/app/profile/sanidhya.mitra4662/vizzes"><img src='https://cdn.worldvectorlogo.com/logos/tableau-software.svg' alt='Tableau'></a>
+                <a href="https://snapchat.com/add/sanidhyamitra?share_id=iZQoU9yu2LE&locale=en-GB"><img src='https://www.svgrepo.com/show/382734/snapchat-snap-chat.svg' alt='Snapchat'></a>
+            </div>
+            <div class="footer">
+                Thank you for visiting my profile. Explore my repositories to see my projects and contributions to the data science community. Let's innovate and solve complex problems together!<br><br>
+                <span class="badge"><img src="https://img.shields.io/github/issues/sanidhya-mitra/sanidhya-mitra" alt="Issues Open"></span>
+                <span class="badge"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg" alt="PRs Welcome"></span>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script>
+        function openTab(tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            document.getElementById(tabName).style.display = "block";
+        }
+        
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function(){
+                document.querySelector(".content").classList.add("reveal");
+            }, 500);
+        });
+    </script>
+</body>
+</html>
